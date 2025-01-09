@@ -8,7 +8,7 @@ public class OrderModelDto {
     private UUID orderId;
     private UUID customerId;
     private UUID productId;
-    private double stockQuantity;
+    private Integer stockQuantity;
     private LocalDate orderData;
     private String status;
 
@@ -45,11 +45,11 @@ public class OrderModelDto {
         this.status = status;
     }
 
-    public double getStockQuantity() {
+    public Integer getStockQuantity() {
         return stockQuantity;
     }
 
-    public void setStockQuantity(double stockQuantity) {
+    public void setStockQuantity(Integer stockQuantity) {
         this.stockQuantity = stockQuantity;
     }
 

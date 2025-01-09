@@ -9,5 +9,4 @@ import com.order.order_api.models.OrderModel;
 
 @Repository
 public interface OrderRepository extends JpaRepository<OrderModel, UUID>{
-
 }

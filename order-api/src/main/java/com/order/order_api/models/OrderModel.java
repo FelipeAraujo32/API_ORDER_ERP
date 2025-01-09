@@ -3,11 +3,13 @@ package com.order.order_api.models;
 import java.time.LocalDate;
 import java.util.UUID;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
+import jakarta.validation.constraints.PositiveOrZero;
 
 @Entity(name = "order")
 @Table(name = "order_erp")
@@ -16,16 +18,22 @@ public class OrderModel {
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
     private UUID orderId;
+
+    @Column(nullable = false)
     private UUID customerId;
+
+    @Column(nullable = false)
     private UUID productId;
-    private double stockQuantity;
+
+    @PositiveOrZero(message = "Stock cannot be negative")
+    private Integer stockQuantity;
     private LocalDate orderData;
     private String status;
     
     public OrderModel() {
     }
 
-    public OrderModel(UUID customerId, UUID productId, double stockQuantity, LocalDate orderData, String status) {
+    public OrderModel(UUID customerId, UUID productId, Integer stockQuantity, LocalDate orderData, String status) {
         this.customerId = customerId;
         this.productId = productId;
         this.stockQuantity = stockQuantity;
@@ -66,11 +74,11 @@ public class OrderModel {
         this.status = status;
     }
 
-    public double getStockQuantity() {
+    public Integer getStockQuantity() {
         return stockQuantity;
     }
 
-    public void setStockQuantity(double stockQuantity) {
+    public void setStockQuantity(Integer stockQuantity) {
         this.stockQuantity = stockQuantity;
     }
 
